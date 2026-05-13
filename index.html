@@ -107,14 +107,103 @@
       opacity: 0.5;
     }
 
-    .card.c0 { background: #fff9c4; } .card.c0::before { background: #f9c74f; }
-    .card.c1 { background: #ffd6d6; } .card.c1::before { background: #f48c9f; }
-    .card.c2 { background: #d4f0ff; } .card.c2::before { background: #74c0fc; }
-    .card.c3 { background: #d7f5d0; } .card.c3::before { background: #74c69d; }
-    .card.c4 { background: #ffe0c4; } .card.c4::before { background: #ffa94d; }
-    .card.c5 { background: #e8d5ff; } .card.c5::before { background: #b197fc; }
-    .card.c6 { background: #fff0d9; } .card.c6::before { background: #ffc078; }
-    .card.c7 { background: #fce4ec; } .card.c7::before { background: #f48fb1; }
+    .card.c0  { background: #fff9c4; } .card.c0::before  { background: #f9c74f; }
+    .card.c1  { background: #ffd6d6; } .card.c1::before  { background: #f48c9f; }
+    .card.c2  { background: #d4f0ff; } .card.c2::before  { background: #74c0fc; }
+    .card.c3  { background: #d7f5d0; } .card.c3::before  { background: #74c69d; }
+    .card.c4  { background: #ffe0c4; } .card.c4::before  { background: #ffa94d; }
+    .card.c5  { background: #e8d5ff; } .card.c5::before  { background: #b197fc; }
+    .card.c6  { background: #fff0d9; } .card.c6::before  { background: #ffc078; }
+    .card.c7  { background: #fce4ec; } .card.c7::before  { background: #f48fb1; }
+    .card.c8  { background: #e0f7fa; } .card.c8::before  { background: #4dd0e1; }
+    .card.c9  { background: #f3e5f5; } .card.c9::before  { background: #ce93d8; }
+    .card.c10 { background: #e8f5e9; } .card.c10::before { background: #81c784; }
+    .card.c11 { background: #fff3e0; } .card.c11::before { background: #ffb74d; }
+    .card.c12 { background: #fce4ec; } .card.c12::before { background: #e57373; }
+    .card.c13 { background: #e3f2fd; } .card.c13::before { background: #64b5f6; }
+
+    /* ── 플로팅 추가 버튼 ── */
+    .fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #3d2b1f;
+      color: #fff;
+      font-size: 1.8rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 100;
+    }
+    .fab:hover { background: #5a3e2f; transform: scale(1.08); }
+
+    /* ── 모달 ── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      width: min(480px, 92vw);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    .modal h2 { font-size: 1.1rem; color: #3d2b1f; margin-bottom: 1.2rem; }
+    .modal label { font-size: 0.82rem; color: #666; display: block; margin-bottom: 0.25rem; }
+    .modal input, .modal textarea {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 0.6rem 0.8rem;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      resize: vertical;
+    }
+    .modal input:focus, .modal textarea:focus { outline: none; border-color: #e8a87c; }
+    .modal textarea { min-height: 120px; }
+
+    .color-picker { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .color-picker input[type="radio"] { display: none; }
+    .color-picker label {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: border-color 0.15s, transform 0.15s;
+      margin: 0;
+    }
+    .color-picker input[type="radio"]:checked + label { border-color: #3d2b1f; transform: scale(1.15); }
+
+    .modal-actions { display: flex; gap: 0.7rem; justify-content: flex-end; }
+    .btn-cancel {
+      padding: 0.55rem 1.2rem; border-radius: 8px;
+      border: 1px solid #ddd; background: #fff;
+      cursor: pointer; font-size: 0.9rem;
+    }
+    .btn-submit {
+      padding: 0.55rem 1.4rem; border-radius: 8px;
+      border: none; background: #3d2b1f; color: #fff;
+      cursor: pointer; font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: #5a3e2f; }
+    .modal-close {
+      position: absolute; top: 0.8rem; right: 1rem;
+      background: none; border: none; font-size: 1.4rem;
+      cursor: pointer; color: #aaa;
+    }
 
     .card-name {
       font-family: 'Gaegu', cursive;
@@ -182,8 +271,7 @@
 
   <div class="card c2">
     <div class="card-name">곽민성</div>
-    <div class="card-msg">강사님 6개월동안 너무너무 고생하셨습니다.
-       너무너무 감사합니다.</div>
+    <div class="card-msg">강사님 5개월정도의 시간동안 너무 감사했습니다. 강사님 덕분에 코드작성에 대해 많이 알게 되었고, 강사님께 배운 지식으로 최대한 빨리 결실을 맺어 취업을 하도록 노력하겠습니다. 감사합니다!!!</div>
   </div>
 
   <!-- 여기에 카드를 계속 추가하세요 ↓ -->
@@ -214,29 +302,145 @@
   </div>  
   <div class="card c9">
     <div class="card-name">최성욱</div>
-    <div class="card-msg">6개월간 큰 탈 없이 마무리하게 되어서 정말 수고 많으셨습니다. 앞으로도 다른 곳에서 좋은 결과가 있으시길 바랍니다. 수고하셨습니다. 감사합니다.</div>
+    <div class="card-msg">덕분에 6개월간 큰 탈 없이 마무리하게 되어서 정말 수고 많으셨습니다. 앞으로도 다른 곳에서 좋은 결과가 있으시길 바랍니다. 수고하셨습니다. 감사합니다.</div>
   </div>  
   <div class="card c10">
-    <div class="card-name"></div>
-    <div class="card-msg"></div>
+    <div class="card-name">최영</div>
+    <div class="card-msg">강사님 그동안 감사하고 수고 많으셨습니다! 짧다면 짧고 길다면 긴 시간이었는데 많은 것을 배우고 덕분에 모르던 자격증에 대한 소식도 접하고 도전할 수 있었습니다! 저희를 끝으로 학원을 그만두시니 뭔가 같이 나가는 느낌이어서 수료도 같이하는 것 같아요! 혹시나 필요한 것이 있다면 연락을 드려도 괜찮을까요? ㅎㅎ 아무튼 그동안 감사했습니다!!</div>
   </div>  
   <div class="card c11">
-    <div class="card-name"></div>
-    <div class="card-msg"></div>
+    <div class="card-name">신원준</div>
+    <div class="card-msg">고생하셨습니다. 신세 많이 졌습니다.</div>
   </div>  
   <div class="card c12">
-    <div class="card-name"></div>
-    <div class="card-msg"></div>
+    <div class="card-name">김승일</div>
+    <div class="card-msg">오늘이 마지막이라니 참으로 감개무량합니다.
+
+이렇게 적고 있으니 학교다닐적 생각도 나고 기분이 묘하네요.
+
+마침 스승의 날이 가까운건  재밌는 우연같습니다.
+
+여러모로 어리숙한 팀장이던 저를 적극적으로 케어해주셨고 그외에도 여러 수고로운 일들을 해주신것에 감사합니다.
+
+오늘같이 좋은날 좋은시간이 계속되길 바라며 이만 마칩니다 .
+
+예비 개발자 김승일</div>
   </div>  
   <div class="card c13">
-    <div class="card-name"></div>
-    <div class="card-msg"></div>
+    <div class="card-name">남수원</div>
+    <div class="card-msg">강사님 5개월동안 너무 고생하셨습니다. 많은 배움이 있었고 많은 즐거움이 있었습니다. 최고의 강사님이셨습니다. 감사합니다.</div>
   </div>  
 
 
 </div>
 
 <footer class="footer">— 소중한 시간을 함께해 주셔서 감사합니다 —</footer>
+
+<!-- 플로팅 버튼 -->
+<button class="fab" id="openModal" title="카드 추가">＋</button>
+
+<!-- 모달 -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" id="closeModal">✕</button>
+    <h2>✏️ 메시지 카드 추가</h2>
+
+    <label>이름</label>
+    <input type="text" id="inputName" placeholder="이름을 입력하세요" maxlength="20" />
+
+    <label>메시지</label>
+    <textarea id="inputMsg" placeholder="강사님께 전하고 싶은 말을 적어주세요 😊"></textarea>
+
+    <label>카드 색상</label>
+    <div class="color-picker">
+      <input type="radio" name="cardColor" id="cc0" value="c0" checked>
+      <label for="cc0" style="background:#fff9c4;"></label>
+      <input type="radio" name="cardColor" id="cc1" value="c1">
+      <label for="cc1" style="background:#ffd6d6;"></label>
+      <input type="radio" name="cardColor" id="cc2" value="c2">
+      <label for="cc2" style="background:#d4f0ff;"></label>
+      <input type="radio" name="cardColor" id="cc3" value="c3">
+      <label for="cc3" style="background:#d7f5d0;"></label>
+      <input type="radio" name="cardColor" id="cc4" value="c4">
+      <label for="cc4" style="background:#ffe0c4;"></label>
+      <input type="radio" name="cardColor" id="cc5" value="c5">
+      <label for="cc5" style="background:#e8d5ff;"></label>
+      <input type="radio" name="cardColor" id="cc6" value="c6">
+      <label for="cc6" style="background:#fff0d9;"></label>
+      <input type="radio" name="cardColor" id="cc7" value="c7">
+      <label for="cc7" style="background:#fce4ec;"></label>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" id="cancelModal">취소</button>
+      <button class="btn-submit" id="submitCard">추가하기</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const board = document.querySelector('.board');
+  const overlay = document.getElementById('modalOverlay');
+  const inputName = document.getElementById('inputName');
+  const inputMsg = document.getElementById('inputMsg');
+
+  function openModal() { overlay.classList.add('open'); inputName.focus(); }
+  function closeModal() {
+    overlay.classList.remove('open');
+    inputName.value = ''; inputMsg.value = '';
+    document.getElementById('cc0').checked = true;
+  }
+
+  document.getElementById('openModal').addEventListener('click', openModal);
+  document.getElementById('closeModal').addEventListener('click', closeModal);
+  document.getElementById('cancelModal').addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+
+  function createCardEl(name, msg, color) {
+    const div = document.createElement('div');
+    div.className = `card ${color}`;
+    div.innerHTML = `<div class="card-name">${escHtml(name)}</div><div class="card-msg">${escHtml(msg)}</div>`;
+    return div;
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function saveCards() {
+    const cards = [...board.querySelectorAll('.card[data-local]')].map(c => ({
+      name: c.querySelector('.card-name').textContent,
+      msg:  c.querySelector('.card-msg').textContent,
+      color: [...c.classList].find(cl => cl.match(/^c\d+$/))
+    }));
+    localStorage.setItem('rollingCards', JSON.stringify(cards));
+  }
+
+  function loadCards() {
+    const saved = JSON.parse(localStorage.getItem('rollingCards') || '[]');
+    saved.forEach(({ name, msg, color }) => {
+      const el = createCardEl(name, msg, color);
+      el.dataset.local = '1';
+      board.appendChild(el);
+    });
+  }
+
+  document.getElementById('submitCard').addEventListener('click', () => {
+    const name = inputName.value.trim();
+    const msg  = inputMsg.value.trim();
+    const color = document.querySelector('input[name="cardColor"]:checked').value;
+    if (!name || !msg) { alert('이름과 메시지를 모두 입력해주세요!'); return; }
+
+    const el = createCardEl(name, msg, color);
+    el.dataset.local = '1';
+    board.appendChild(el);
+    saveCards();
+    closeModal();
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  loadCards();
+</script>
 
 </body>
 </html>
